@@ -1,18 +1,28 @@
 #!/usr/bin/env python
 import sys
 import os
+import pathlib
+
 myfasta = sys.argv[1]
 fasta = open(myfasta)
 # newfasta = sys.argv[2]
 # newfasta = open(newfasta, 'w')
 
-# types = ['CDS', 'tRNA', 'rRNA', 'retrotransposons', 'mitochondria', 'IGR']
+types = ['CDS', 'tRNA', 'rRNA', 'retrotransposons', 'mitochondria', 'IGR']
+cwd = os.getcwd()
 
-types = ['CDS', 'tRNA', 'rRNA']
+
 
 for type in range(len(types)):
     print('My type index is: ' + str(type))
-    newfasta = open(myfasta+'_' + types[type]+'.fasta', 'w')
+    # path = str(cwd+"/" + types[type])
+    path = os.path.join(cwd, types[type])
+    print(path)
+    # if type == 0:
+    os.makedirs(path, exist_ok=True)
+    newfile = ''.join([path, '/', myfasta, '_' , types[type], '.fasta'])
+    newfasta = open(newfile, 'w')
+    print(newfile)
     flag = False
     fasta = open(myfasta)
     for line in fasta:
