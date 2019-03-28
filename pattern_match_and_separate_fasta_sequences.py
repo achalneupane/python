@@ -14,10 +14,10 @@ cwd = os.getcwd()
 
 
 for type in range(len(types)):
-    print('My type index is: ' + str(type))
+    print('My type index is: ' + str(types[type]))
     # path = str(cwd+"/" + types[type])
     path = os.path.join(cwd, types[type])
-    print(path)
+    #print(path)
     # if type == 0:
     os.makedirs(path, exist_ok=True)
     newfile = ''.join([path, '/', myfasta, '_' , types[type], '.fasta'])
