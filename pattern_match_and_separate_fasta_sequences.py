@@ -1,23 +1,18 @@
-# # #!/usr/bin/env python
-# # import sys
-# # import os
-# # myfasta = sys.argv[1]
-# # fasta = open(myfasta)
-# # # newfasta = sys.argv[2]
-# # # newfasta = open(newfasta, 'w')
-
-# # # types = ['CDS', 'tRNA', 'rRNA', 'retrotransposons', 'mitochondria', 'IGR']
-# # types = ['CDS', 'tRNA', 'rRNA']
-
+#!/usr/bin/env python
 import sys
 import os
-# myfasta = sys.argv[1]
-myfasta = "/home/owner/Dropbox/python/new_fasta.fasta"
+myfasta = sys.argv[1]
+fasta = open(myfasta)
+# newfasta = sys.argv[2]
+# newfasta = open(newfasta, 'w')
+
+# types = ['CDS', 'tRNA', 'rRNA', 'retrotransposons', 'mitochondria', 'IGR']
 
 types = ['CDS', 'tRNA', 'rRNA']
 
 for type in range(len(types)):
     print('My type index is: ' + str(type))
+    newfasta = open(myfasta+'_' + types[type]+'.fasta', 'w')
     flag = False
     fasta = open(myfasta)
     for line in fasta:
@@ -26,9 +21,12 @@ for type in range(len(types)):
         elif line.startswith('>'):
           flag = False
         if flag:
-            print(line.strip())
+            grabbed = line.strip()
+            newfasta.writelines(grabbed + "\n")
+            # print(grabbed)
+    newfasta.close()
 
-
+fasta.close
 
 
 # import sys
