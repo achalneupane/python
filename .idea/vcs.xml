@@ -3,6 +3,5 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/YOLO_Object_Detection" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/yolo_object_detection (Case Conflict)" vcs="Git" />
   </component>
 </project>
