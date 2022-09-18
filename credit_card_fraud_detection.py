@@ -97,3 +97,16 @@ print("The F1-Score is {}".format(f1))
 MCC = matthews_corrcoef(yTest, yPred)
 print("The Matthews correlation coefficient is {}".format(MCC))
 
+
+
+# printing the confusion matrix
+LABELS = ['Normal', 'Fraud']
+conf_matrix = confusion_matrix(yTest, yPred)
+plt.figure(figsize =(12, 12))
+sns.heatmap(conf_matrix, xticklabels = LABELS,
+			yticklabels = LABELS, annot = True, fmt ="d");
+plt.title("Confusion matrix")
+plt.ylabel('True class')
+plt.xlabel('Predicted class')
+plt.show()
+
