@@ -44,8 +44,17 @@ b = model.support_vectors_[-1]
 yy_up = a * xx + (b[1] - a * b[0])
 
 sns.lmplot('Flour', 'Sugar', data = recipes, hue = 'Type', palette = 'Set1', fit_reg = False, scatter_kws = {"s": 70})
+plt.plot(xx, yy, linewidth = 2, color = 'black')
+plt.plot(xx, yy_down, 'k--')
+plt.plot(xx, yy_up, 'k--')
 plt.show()
 
-
-X = np.random.uniform(size=100).reshape(50, 2)
-y = np.dot(X, [[1, 2, 3], [3, 4, 5]])
+# create a function to predict muffin or cupcake
+def muffin_or_cupcake(flour, sugar):
+  if(model.predict([[flour, sugar]]))==0:
+    print('You\'re looking at a muffin recipe!')
+  else:
+    print('You\'re looking at a cupcake recipe!')
+    
+muffin_or_cupcake(50,20)
+    
