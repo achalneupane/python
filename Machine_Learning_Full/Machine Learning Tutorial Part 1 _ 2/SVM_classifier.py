@@ -1,7 +1,4 @@
 # Problem is to classify muffin and cupcakes recipes using support vector machines.
-
-
-
 # import packages
 import numpy as np
 import pandas as pd
@@ -10,7 +7,7 @@ from sklearn import svm
 import seaborn as sns
 sns.set(style="ticks")
 import matplotlib.pyplot as plt
-plt.rcParams.update({'figure.max_open_warning': 0})
+# plt.rcParams.update({'figure.max_open_warning': 0})
 
 
 recipes = pd.read_csv('/Users/aneupane/Desktop/python/Machine_Learning_Full/Machine Learning Tutorial Part 1 _ 2/Cupcakes vs Muffins.csv')
@@ -58,3 +55,9 @@ def muffin_or_cupcake(flour, sugar):
     
 muffin_or_cupcake(50,20)
     
+    
+# Plot the point to visually see where the point lies
+sns.lmplot('Flour', 'Sugar', data=recipes, hue='Type', palette='Set1', fit_reg=False, scatter_kws={"s": 70})
+plt.plot(xx, yy, linewidth=2, color='black')
+plt.plot(50, 20, 'yo', markersize='9');
+plt.show()
