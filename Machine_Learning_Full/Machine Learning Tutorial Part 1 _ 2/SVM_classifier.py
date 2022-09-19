@@ -7,7 +7,7 @@ from sklearn import svm
 import seaborn as sns
 sns.set(style="ticks")
 import matplotlib.pyplot as plt
-# plt.rcParams.update({'figure.max_open_warning': 0})
+plt.rcParams.update({'figure.max_open_warning': 0})
 
 
 recipes = pd.read_csv('/Users/aneupane/Desktop/python/Machine_Learning_Full/Machine Learning Tutorial Part 1 _ 2/Cupcakes vs Muffins.csv')
