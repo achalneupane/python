@@ -67,5 +67,6 @@ plt.plot(xx, yy, linewidth=2, color='black')
 plt.plot(50, 20, 'yo', markersize='9');
 plt.show()
 
-
-
+#####################
+## K-means cluster ##
+#####################
