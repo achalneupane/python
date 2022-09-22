@@ -1,3 +1,6 @@
+####################
+## SVM Classifier ##
+####################
 # Problem is to classify muffin and cupcakes recipes using support vector machines.
 # import packages
 import numpy as np
@@ -27,9 +30,11 @@ model.fit(ingredients, type_label)
 
 # Get separating hyperplane
 w = model.coef_[0]
-a = -w[0]/w[1]
-xx = np.linspace(30,60)
-yy = a * xx - (model.intercept_[0])/ w[1]
+a = -w[0]/w[1] # slope
+xx = np.linspace(30,60) # np array (line values)
+
+# y = mx + c; # slope time each value in the np array, then substract the model intercept
+yy = a * xx - (model.intercept_[0])/ w[1]  
 
 # Plot the parallels to the separating hyperplane that pass through the support
 # vectors
@@ -61,3 +66,6 @@ sns.lmplot('Flour', 'Sugar', data=recipes, hue='Type', palette='Set1', fit_reg=F
 plt.plot(xx, yy, linewidth=2, color='black')
 plt.plot(50, 20, 'yo', markersize='9');
 plt.show()
+
+
+
