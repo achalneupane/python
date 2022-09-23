@@ -70,3 +70,11 @@ plt.show()
 #####################
 ## K-means cluster ##
 #####################
+
+# Import libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# allow charts to appear in the notebook
+'exec(%matplotlib inline)'
