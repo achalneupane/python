@@ -20,6 +20,7 @@ sns.lmplot("Flour", "Sugar", data=recipes, hue='Type', fit_reg=False)
 plt.show()
 
 
+
 type_label = np.where(recipes['Type']=='Muffin', 0,1)
 recipe_features = recipes.columns.values[1:].tolist()
 ingredients = recipes[['Flour', 'Sugar']].values
