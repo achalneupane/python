@@ -94,7 +94,7 @@ for imb in ["1:50", "1:100", "1:200"]:
   scores[m_name] = []
   for fold in range(nfolds):
     print("%s fold %d/%d" % (m_name, fold + 1, nfolds))
-    train_ind = np.array(list(set(np.arange(len(labels)))-set(test_ind[imb][fold]))
+    train_ind = np.array(list(set(np.arange(len(labels)))-set(test_ind[imb][fold])))
     # Train
     model = DeeSOM(verbosity=True)
     model.fit(features[train_ind, :], labels[train_ind])
@@ -152,7 +152,7 @@ for fold in range(9, nfolds):
   ! python3 mirDNN/mirdnn_fit.py -i tmp/negative_sequences.fold -i tmp/positive_sequences.fold -m tmp/out_model.pmt -l tmp/train_{imb}_{fold}.log -d "cuda" -s 160
 
     # Run test script
-    ! python3 mirDNN/mirdnn_eval.py -i tmp/test_sequences.fold -o res/mirdnn_predictions_{imb}_{fold}.csv -m tmp/out_model.pmt -s 160 -d "cuda"
+  ! python3 mirDNN/mirdnn_eval.py -i tmp/test_sequences.fold -o res/mirdnn_predictions_{imb}_{fold}.csv -m tmp/out_model.pmt -s 160 -d "cuda"
     
 
 ```
