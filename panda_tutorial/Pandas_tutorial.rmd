@@ -309,7 +309,7 @@ Format, MP3, and MP4.
 
 ```{python}
 import pymysql
-
+import openpyxl
 # Read a CSV file
 # Type pd.read_ [TAB] to see the file types you can read
 cs_df = pd.read_csv('ComputerSales.csv')
