@@ -93,10 +93,6 @@ ser_4.name
 ```
 
 
-    'rand_nums'
-
-
-
 
 ### DataFrames
 
@@ -142,11 +138,6 @@ print(df_1.shape)
 ```
 
 
-    (2, 3)
-
-
-
-
 ### Editing & Retrieving Data {#editing--retrieving-data}
 
 
@@ -179,7 +170,9 @@ df_2
 # Make a new row by appending
 dict_2 = {'C': 44, 'D': 45, 'E': 46}
 new_row = pd.Series(dict_2, name='F')
-df_1 = df_1.append(new_row)
+df_1_save = df_1
+df_1 = df_1.append(new_row, ignore_index = False)
+# df_1 = pd.concat([df_1, new_row], axis = 0)
 
 # Delete column and set inplace to True which is required
 # because Pandas tries to help you not delete data
@@ -218,6 +211,110 @@ df_3.combine_first(df_4)
     B  34  49
 
 
+Extract Keys with values
+```{python}
+# creating a new dictionary
+my_dict ={"Java":100, "Python":112, "C":11}
+
+# one-liner
+print("One line Code Key value: ", list(my_dict.keys())
+	[list(my_dict.values()).index(100)])
+
+
+# Get the key by Value using list comprehension
+dic ={"geeks": "A","for":"B","geeks":"C"}
+
+value = {i for i in dic if dic[i]=="B"}
+print("key by value:",value)
+
+
+# Using list.index
+# creating a new dictionary
+my_dict ={"java":100, "python":112, "c":11}
+
+# list out keys and values separately
+key_list = list(my_dict.keys())
+val_list = list(my_dict.values())
+
+# print key with val 100
+position = val_list.index(100)
+print(key_list[position])
+
+
+```
+
+### Concatenate rows of two dataframes in pandas
+
+
+```{python}
+t=pd.DataFrame()
+t['a']=[1,2,3,4]
+t=t.loc[t['a']>1] #now index starts from 1
+
+u=pd.DataFrame()
+u['b']=[1,2,3] #index starts from 0
+
+#option 1
+#keep index of t
+u.index = t.index 
+
+#option 2
+#index of t starts from 0
+t.reset_index(drop=True, inplace=True)
+
+#now concat will keep number of rows 
+r=pd.concat([t,u], axis=1)
+
+
+dict_data = {'Treatment': ['C', 'C', 'C'], 'Biorep': ['A', 'A', 'A'], 'Techrep': [1, 1, 1], 'AAseq': ['ELVISLIVES', 'ELVISLIVES', 'ELVISLIVES'], 'mz':[500.0, 500.5, 501.0]}
+df_a = pd.DataFrame(dict_data)
+dict_data = {'Treatment1': ['C', 'C', 'C'], 'Biorep1': ['A', 'A', 'A'], 'Techrep1': [1, 1, 1], 'AAseq1': ['ELVISLIVES', 'ELVISLIVES', 'ELVISLIVES'], 'inte1':[1100.0, 1050.0, 1010.0]}
+df_b = pd.DataFrame(dict_data)
+
+
+# call concat and pass param axis=1 to concatenate column-wise:
+pd.concat([df_a,df_b], axis=1)
+
+# Since we have no clashing columns, we can merge and use the indices as they have the same number of rows:
+df_a.merge(df_b, left_index=True, right_index=True)
+
+# And for the same reasons as above a simple join works too:
+df_a.join(df_b)
+
+# Appending rows to a DataFrame
+s2 = pd.Series(["X0", "X1", "X2", "X3"], index=["A", "B", "C", "D"])
+
+result = pd.concat([df1, s2.to_frame().T], ignore_index=True)
+
+df1 = pd.DataFrame(
+  {
+  "A": ["A0", "A1", "A2", "A3"],
+  "B": ["B0", "B1", "B2", "B3"],
+  "C": ["C0", "C1", "C2", "C3"],
+  "D": ["D0", "D1", "D2", "D3"],
+   }, index=[0, 1, 2, 3],)
+
+df2 = pd.DataFrame(
+  {
+  "A": ["A4", "A5", "A6", "A7"],
+  "B": ["B4", "B5", "B6", "B7"],
+  "C": ["C4", "C5", "C6", "C7"],
+  "D": ["D4", "D5", "D6", "D7"],
+  },index=[4, 5, 6, 7],)
+
+df3 = pd.DataFrame(
+     {
+   "A": ["A8", "A9", "A10", "A11"],
+   "B": ["B8", "B9", "B10", "B11"],
+   "C": ["C8", "C9", "C10", "C11"],
+   "D": ["D8", "D9", "D10", "D11"],
+   }, index=[8, 9, 10, 11],)
+
+frames = [df1, df2, df3]
+
+result = pd.concat(frames)
+
+```
 
 
 ### Conditional Selection
