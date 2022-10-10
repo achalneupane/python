@@ -1,22 +1,28 @@
 ---
-jupyter:
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
-  language_info:
-    codemirror_mode:
-      name: ipython
-      version: 3
-    file_extension: .py
-    mimetype: text/x-python
-    name: python
-    nbconvert_exporter: python
-    pygments_lexer: ipython3
-    version: 3.7.6
-  nbformat: 4
-  nbformat_minor: 4
+Authors: ["**Achal Neupane**"]
+title: "Numpy tutorial"
+date: 2016-06-19T17:26:23-05:00
+draft: false
+output: html_document
+tags:
+- Python
 ---
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+```{r setup, include = F}
+knitr::opts_chunk$set(echo=T, warning=FALSE, message=FALSE)
+
+# vi $HOME/.Renviron
+# RETICULATE_PYTHON="c:/Users/aneupane/AppData/Local/Microsoft/WindowsApps/python3"
+
+library(reticulate)
+repl_python()
+```
+
 
 
 ### NumPy Tutorial
@@ -40,7 +46,7 @@ NumPy utilizes vector (1D Arrays) and matrice arrays (2D Arrays).
 
 
 
-``` {.python}
+```{python}
 import numpy as np
 # Provides beautiful plots of numerous type that are either
 # static, animated and/or interactive
@@ -80,6 +86,7 @@ np.ones((2, 3))
 
 # Get number of items in the array
 np_m_arr_1.size
+np_m_arr_1.shape
 
 # Create array with defined values
 np_arr_2 = np.array([1, 2, 3, 4, 5, 6])
@@ -107,6 +114,9 @@ np.random.randint(10, 50, size=(2, 3))
 
 # Get help with a function
 np.random.randint?
+
+# Within R studio
+?np.random.randint
 ```
 
 
@@ -115,7 +125,7 @@ np.random.randint?
 
 
 
-``` {.python}
+```{python}
 # Change value at index
 # np_m_arr_1[0,0] = 2
 # np_m_arr_1.itemset((0,1), 1)
@@ -147,8 +157,8 @@ evens
 np_m_arr_1[np_m_arr_1 > 5]
 # 5 < value < 9
 np_m_arr_1[(np_m_arr_1 > 5) & (np_m_arr_1 < 9)]
-# 5 < value or value = 10
-np_m_arr_1[(np_m_arr_1 > 5) | (np_m_arr_1 == 10)]
+# 5 > value or value = 10
+np_m_arr_1[(np_m_arr_1 < 5) | (np_m_arr_1 == 10)]
 
 # Find uniques
 np.unique(np_m_arr_1)
@@ -170,12 +180,16 @@ np.unique(np_m_arr_1)
 
 
 
-``` {.python}
+```{python}
 # Reshape array to 1 by 9
 np_m_arr_1.reshape((1, 9))
 np_m_arr_1
 # Reshape array to 2 by 5 (Items are either lost or 0s added)
-np_m_arr_1.resize((2,5))
+np_m_arr_1_saved_orig = np_m_arr_1
+np_m_arr_1_saved = np_m_arr_1[:] # save array
+import copy
+np_m_arr_1_saved_deep = copy.deepcopy(np_m_arr_1)
+np_m_arr_1.resize((2,5), refcheck=False) # np_m_arr_1_saved_orig = np_m_arr_1 both gets resized, because np_m_arr_1_saved_orig is mirrored view of np_m_arr_1
 np_m_arr_1
 # Transpose axes
 np_m_arr_1.transpose()
@@ -209,7 +223,7 @@ np_m_arr_1
 
 
 
-``` {.python}
+```{python}
 # Generate random arrays
 ss_arr_1 = np.random.randint(10, size=(2, 2))
 print("ss_arr_1\n", ss_arr_1)
@@ -271,7 +285,7 @@ np.hsplit(ss_arr_5, (2, 4))
 
 
 
-``` {.python}
+```{python}
 cp_arr_1 = np.random.randint(10, size=(2, 2))
 # Both variables point at the same array
 cp_arr_2 = cp_arr_1
@@ -312,7 +326,7 @@ cp_arr_4 = cp_arr_1.copy()
 
 
 
-``` {.python}
+```{python}
 arr_3 = np.array([1, 2, 3, 4])
 arr_4 = np.array([2, 4, 6, 8])
 # Add values
@@ -434,7 +448,7 @@ arr_7[mc_index, range(arr_7.shape[1])]
 
 
 
-``` {.python}
+```{python}
 # Pandas is used to manipulate tabular data and more
 import pandas as pd
 # Import using NumPy
@@ -473,7 +487,7 @@ ic_sales_2
 
 
 
-``` {.python}
+```{python}
 # Array 1 - 5
 sarr_1 = np.arange(1, 6)
 np.mean(sarr_1)
@@ -535,7 +549,7 @@ reg_arr
 
 
 
-``` {.python}
+```{python}
 # Generate array of 200 values between -pi & pi
 t_arr = np.linspace(-np.pi, np.pi, 200)
 
@@ -572,7 +586,7 @@ np.hypot(10,10)
 
 
 
-``` {.python}
+```{python}
 from numpy import linalg as LA
 
 print("arr_5\n", arr_5)
@@ -713,7 +727,7 @@ np.eye(2, 2, dtype=int)
 
 
 
-``` {.python}
+```{python}
 arr_15 = np.array([[1, 2], [3, 4]])
 # Save as randarray.npy
 np.save('randarray', arr_15)
@@ -739,7 +753,7 @@ arr_17
 
 
 
-``` {.python}
+```{python}
 # Install in Conda terminal with
 # conda install pip
 # pip install numpy-financial
@@ -797,7 +811,7 @@ npf.npv(0.08, [-15000, 4000, 5000, 6000, 7000]).round(2)
 
 
 
-``` {.python}
+```{python}
 carr_1 = np.array([2, 3])
 carr_2 = np.array([3, 2])
 # Returns boolean based on whether arr_1 value Comparison arr_2 value
