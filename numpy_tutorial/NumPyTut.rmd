@@ -381,6 +381,8 @@ print("arr_6\n", arr_6)
 # Divides elements in 1st array by 2nd array and returns remainder
 np.remainder(arr_6, arr_5)
 
+np.remainder([4, 7], [2, 3])
+
 # Return values in 1st array to powers defined in 2nd array
 np.power(arr_6, arr_5)
 # Square root
